@@ -17,22 +17,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private String userName, password;
     private EditText usernameInput;
     private EditText passwordInput;
-    private String choice;
-    private boolean proceed= false;
+    private String choice="";
+    private boolean proceed= true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        System.out.println("oncreate");
+        System.out.println(proceed);
+        usernameInput= findViewById(R.id.userInput);
+        passwordInput= findViewById(R.id.passwordInput);
 
-        usernameInput= (EditText) findViewById(R.id.userInput);
-        passwordInput= (EditText) findViewById(R.id.passwordInput);
-
-        Spinner spinner = findViewById(R.id.Account_Selector);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Choices, android.R.layout.simple_spinner_item);
+        final Spinner spinner = findViewById(R.id.Account_Selector);
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Choices, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
         enter = (Button) findViewById(R.id.Enter);
 
         enter.setOnClickListener(new View.OnClickListener() {
@@ -40,33 +42,32 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 userName = usernameInput.getText().toString();
                 password = passwordInput.getText().toString();
-                proceed=true;
+                System.out.println("The choice is " + choice);
+                if(choice.equals("Admin")) {
+                    adapter.remove((String)spinner.getSelectedItem());
+                    adapter.notifyDataSetChanged();
+                }
+                System.out.println(proceed);
+                WelcomeScreen();
             }
         });
-        if (choice == "Admin" && proceed==true) {
-            this.WelcomeScreen();
-
-        } else if (choice == "Service Provider" && proceed==true) {
-            this.WelcomeScreen();
-
-        } else if (choice == "Home Owner" && proceed==true) {
-            this.WelcomeScreen();
-
-        }
     }
 
     public void WelcomeScreen(){
+        System.out.println("Welcome Screen check");
+        System.out.println(choice);
+        System.out.println(userName);
+        Bundle b = new Bundle();
+        b.putString("role", choice);
+        b.putString("user", userName);
         Intent intent = new Intent(this, Welcome_Screen.class);
+        intent.putExtras(b);
         startActivity(intent);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        choice= parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), choice, Toast.LENGTH_LONG );
-
-
-
+            choice = parent.getItemAtPosition(position).toString();
     }
 
     @Override
