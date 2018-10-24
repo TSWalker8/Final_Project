@@ -44,19 +44,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
         if (choice == "Admin" && proceed==true) {
-            WelcomeScreen();
+            this.WelcomeScreen();
 
         } else if (choice == "Service Provider" && proceed==true) {
-            WelcomeScreen();
+            this.WelcomeScreen();
 
         } else if (choice == "Home Owner" && proceed==true) {
-            WelcomeScreen();
+            this.WelcomeScreen();
 
         }
     }
 
     public void WelcomeScreen(){
-        Intent intent= new Intent(this, Welcome_Screen.class);
+        Intent intent = new Intent(this, Welcome_Screen.class);
         startActivity(intent);
     }
 
