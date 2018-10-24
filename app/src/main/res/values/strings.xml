@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Final_Project</string>
+    <string name="Email_Address">Email Address</string>
+    <string name="Password">Password</string>
+    <string name="Enter">Enter</string>
+    <string name="Username">Username</string>
+    <string name="Role">Role</string>
+    <string name="welcome">Welcome! Congratulations on Creating an Account</string>
+
+    <string-array name="Choices">
+        <item>Admin</item>
+        <item>Service Provider</item>
+        <item>Home Owner</item>
+    </string-array>
 </resources>
