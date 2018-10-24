@@ -24,13 +24,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("oncreate");
-        System.out.println(proceed);
         usernameInput= findViewById(R.id.userInput);
         passwordInput= findViewById(R.id.passwordInput);
 
-        final Spinner spinner = findViewById(R.id.Account_Selector);
-        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Choices, android.R.layout.simple_spinner_item);
+        Spinner spinner = findViewById(R.id.Account_Selector);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Choices, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
@@ -42,21 +40,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 userName = usernameInput.getText().toString();
                 password = passwordInput.getText().toString();
-                System.out.println("The choice is " + choice);
-                if(choice.equals("Admin")) {
-                    adapter.remove((String)spinner.getSelectedItem());
-                    adapter.notifyDataSetChanged();
-                }
-                System.out.println(proceed);
                 WelcomeScreen();
             }
         });
     }
 
     public void WelcomeScreen(){
-        System.out.println("Welcome Screen check");
-        System.out.println(choice);
-        System.out.println(userName);
         Bundle b = new Bundle();
         b.putString("role", choice);
         b.putString("user", userName);
