@@ -26,12 +26,6 @@ public class LogIn_Screen extends AppCompatActivity implements AdapterView.OnIte
         usernameInput= findViewById(R.id.userInput);
         passwordInput= findViewById(R.id.passwordInput);
 
-        Spinner spinner = findViewById(R.id.Account_Selector);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Choices, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-
         enter = (Button) findViewById(R.id.Enter);
 
 
