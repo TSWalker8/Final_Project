@@ -6,6 +6,7 @@
     <string name="Username">Username</string>
     <string name="Role">Role</string>
     <string name="welcome">Welcome! Congratulations on Creating an Account</string>
+    <string name="LogIn">Log In</string>
 
     <string-array name="Choices">
         <item>Admin</item>
