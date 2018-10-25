@@ -17,6 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Welcome_Screen"></activity>
+        <activity android:name=".LogIn_Screen"></activity>
+
     </application>
 
 </manifest>

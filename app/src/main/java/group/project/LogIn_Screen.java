@@ -11,10 +11,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class LogIn_Screen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Button enter;
-    private Button login;
     private String userName, password;
     private EditText usernameInput;
     private EditText passwordInput;
@@ -23,25 +22,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login_screen);
         usernameInput= findViewById(R.id.userInput);
         passwordInput= findViewById(R.id.passwordInput);
 
-        Spinner spinner = findViewById(R.id.Account_Selector);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Choices, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-
         enter = (Button) findViewById(R.id.Enter);
-        login = (Button) findViewById(R.id.LogIn);
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                LogInScreen();
-            }
-        });
 
 
         enter.setOnClickListener(new View.OnClickListener() {
@@ -49,10 +34,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 userName = usernameInput.getText().toString();
                 password = passwordInput.getText().toString();
-                if(choice=="Admin");
-                {
-                    removeAdmin();
-                }
                 WelcomeScreen();
             }
         });
@@ -67,29 +48,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         startActivity(intent);
     }
 
-<<<<<<< HEAD
-    public void removeAdmin(){
-        Choices.remove
-=======
-    public void LogInScreen(){
-        Intent intent = new Intent(this, LogIn_Screen.class);
-        startActivity(intent);
->>>>>>> bccd1afa079b2ed16a924d682d3fabc0a39f2d23
-    }
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            choice = parent.getItemAtPosition(position).toString();
-            System.out.println(proceed);
-            while(proceed==false){
-                Toast.makeText(getApplicationContext(), "admin already chosen",Toast.LENGTH_LONG);
-                choice = parent.getItemAtPosition(position).toString();
-                if(choice!="Admin"){
-                    proceed=true;
-                }
-
-            }
-
+        choice = parent.getItemAtPosition(position).toString();
     }
 
     @Override
