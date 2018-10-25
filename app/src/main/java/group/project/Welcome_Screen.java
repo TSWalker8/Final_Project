@@ -16,13 +16,8 @@ public class Welcome_Screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Bundle extras= getIntent().getExtras();
         if (extras != null) {
-            System.out.println("Youre inside IF");
-            System.out.println(extras.getString("role"));
-
             user=extras.getString("user");
             choice=extras.getString("role");
-            System.out.println(user);
-            System.out.println(choice);
 
         }
         super.onCreate(savedInstanceState);
@@ -32,8 +27,8 @@ public class Welcome_Screen extends AppCompatActivity {
         TextView Username= (TextView) findViewById(R.id.Username);
         Username.setText(user);
     }
-    @Override
+    /*@Override
     public void onBackPressed() {
         startActivity(new Intent(this, MainActivity.class));
-    }
+    }*/
 }

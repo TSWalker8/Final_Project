@@ -40,6 +40,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 userName = usernameInput.getText().toString();
                 password = passwordInput.getText().toString();
+                if(choice=="Admin");
+                {
+                    removeAdmin();
+                }
                 WelcomeScreen();
             }
         });
@@ -54,9 +58,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         startActivity(intent);
     }
 
+    public void removeAdmin(){
+        Choices.remove
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             choice = parent.getItemAtPosition(position).toString();
+            System.out.println(proceed);
+            while(proceed==false){
+                Toast.makeText(getApplicationContext(), "admin already chosen",Toast.LENGTH_LONG);
+                choice = parent.getItemAtPosition(position).toString();
+                if(choice!="Admin"){
+                    proceed=true;
+                }
+
+            }
+
     }
 
     @Override
