@@ -67,6 +67,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="139dp"
         android:layout_marginTop="0dp"
-        android:text="@string/Enter" />
+        android:text="@string/LogIn" />
+
+    <Button
+        android:id="@+id/Register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Enter"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Register" />
 
 </RelativeLayout>

@@ -9,6 +9,7 @@
     <string name="LogIn">Log In</string>
     <string name="welcomeText">Welcome</string>
     <string name="welcomeMessage2">you are logged in as</string>
+    <string name="Register">Click Here to Register</string>
 
     <string-array name="Choices">
         <item>Admin</item>

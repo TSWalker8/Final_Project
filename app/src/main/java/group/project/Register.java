@@ -11,10 +11,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Register extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Button enter;
-    private Button login;
     private String userName, password;
     private EditText usernameInput;
     private EditText passwordInput;
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
         usernameInput= findViewById(R.id.userInput);
         passwordInput= findViewById(R.id.passwordInput);
 
@@ -34,15 +33,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setOnItemSelectedListener(this);
 
         enter = (Button) findViewById(R.id.Enter);
-        login = (Button) findViewById(R.id.LogIn);
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                LogInScreen();
-            }
-        });
-
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,13 +53,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         startActivity(intent);
     }
 
-    public void LogInScreen(){
-        Intent intent = new Intent(this, LogIn_Screen.class);
-        startActivity(intent);
-    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        choice= parent.getItemAtPosition(position).toString();
 
     }
 

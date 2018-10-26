@@ -18,6 +18,7 @@ public class LogIn_Screen extends AppCompatActivity implements AdapterView.OnIte
     private EditText usernameInput;
     private EditText passwordInput;
     private String choice="";
+    private Button Register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class LogIn_Screen extends AppCompatActivity implements AdapterView.OnIte
         passwordInput= findViewById(R.id.passwordInput);
 
         enter = (Button) findViewById(R.id.Enter);
+        Register= (Button) findViewById((R.id.Register));
 
 
         enter.setOnClickListener(new View.OnClickListener() {
@@ -37,7 +39,15 @@ public class LogIn_Screen extends AppCompatActivity implements AdapterView.OnIte
                 WelcomeScreen();
             }
         });
-    }
+
+        Register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Register();
+            }
+        });
+
+        }
 
     public void WelcomeScreen(){
         Bundle b = new Bundle();
@@ -47,6 +57,13 @@ public class LogIn_Screen extends AppCompatActivity implements AdapterView.OnIte
         intent.putExtras(b);
         startActivity(intent);
     }
+
+    public void Register(){
+        Intent intent = new Intent(this, Register.class);
+        startActivity(intent);
+    }
+
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
