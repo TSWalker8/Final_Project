@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Register extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Button enter;
@@ -18,6 +21,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     private EditText usernameInput;
     private EditText passwordInput;
     private String choice="";
+    private DatabaseReference database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,9 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
             public void onClick(View v) {
                 userName = usernameInput.getText().toString();
                 password = passwordInput.getText().toString();
+                database=FirebaseDatabase.getInstance().getReference();
+                User user= new User(password, choice);
+                database.child("Users").child(userName).setValue(user);
                 WelcomeScreen();
             }
         });
@@ -64,6 +71,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
 
 
 }

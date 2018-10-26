@@ -47,7 +47,10 @@ public class LogIn_Screen extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        }
+    }
+
+
+
 
     public void WelcomeScreen(){
         Bundle b = new Bundle();
