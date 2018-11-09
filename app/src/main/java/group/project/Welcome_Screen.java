@@ -19,6 +19,7 @@ public class Welcome_Screen extends AppCompatActivity {
         if (extras != null) {
             user=extras.getString("user");
             choice=extras.getString("role");
+            System.out.println(choice);
 
         }
         super.onCreate(savedInstanceState);
@@ -31,8 +32,7 @@ public class Welcome_Screen extends AppCompatActivity {
         Continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v){
-                if (choice == "admin") {
-                    System.out.println("HELLO");
+                if (choice.equals("Admin")) {
                     addServices();
                 }
 

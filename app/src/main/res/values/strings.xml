@@ -19,4 +19,6 @@
     </string-array>
     <string name="title_activity_services">Services</string>
     <string name="Services">Services</string>
+    <string name="hourly">What is the Hourly Rate</string>
+    <string name="serviceOffered">What Service Would You Like To Offer?</string>
 </resources>
