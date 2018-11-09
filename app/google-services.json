@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "1004892026660-fpsmltvfdu6tisbetfb0nvghs03s5hk4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "group.project",
+            "certificate_hash": "a6c60dc1b8acfd5f208671ec1d9ebde4265cfd79"
+          }
+        },
+        {
           "client_id": "1004892026660-g6roc54tejsb40nvo3o3f7e52q8asnio.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -36,7 +36,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        enter = (Button) findViewById(R.id.Enter);
+        enter =  findViewById(R.id.Enter);
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override

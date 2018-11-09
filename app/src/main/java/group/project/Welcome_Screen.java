@@ -3,14 +3,15 @@ package group.project;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
+import android.view.View;
 
 public class Welcome_Screen extends AppCompatActivity {
 
     private String user;
     private String choice;
+    private Button Continue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +23,27 @@ public class Welcome_Screen extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome__screen);
-        TextView Role= (TextView) findViewById(R.id.Role);
+        TextView Role=  findViewById(R.id.Role);
         Role.setText(choice);
-        TextView Username= (TextView) findViewById(R.id.Username);
+        TextView Username=  findViewById(R.id.Username);
         Username.setText(user);
+        Continue= findViewById(R.id.Continue);
+        Continue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v){
+                if (choice == "admin") {
+                    System.out.println("HELLO");
+                    addServices();
+                }
+
+            }
+        });
+
+    }
+
+    public void addServices(){
+        Intent intent= new Intent(this, Services.class);
+        startActivity(intent);
     }
     /*@Override
     public void onBackPressed() {

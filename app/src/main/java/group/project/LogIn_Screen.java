@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
 public class LogIn_Screen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Button enter;
@@ -27,8 +28,8 @@ public class LogIn_Screen extends AppCompatActivity implements AdapterView.OnIte
         usernameInput= findViewById(R.id.userInput);
         passwordInput= findViewById(R.id.passwordInput);
 
-        enter = (Button) findViewById(R.id.Enter);
-        Register= (Button) findViewById((R.id.Register));
+        enter = findViewById(R.id.Enter);
+        Register= findViewById((R.id.Register));
 
 
         enter.setOnClickListener(new View.OnClickListener() {
