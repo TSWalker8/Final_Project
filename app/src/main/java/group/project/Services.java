@@ -25,6 +25,8 @@ public class Services extends AppCompatActivity {
     private Button enter;
     private EditText service;
     private EditText hourly;
+    private EditText serviceText;
+    private EditText hourlyText;
     private String hourlyString, serviceString;
     private ArrayList work;
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
@@ -49,6 +51,8 @@ public class Services extends AppCompatActivity {
         work= new ArrayList();
         serviceAdapter= new serviceAdapter(work);
         serviceList.setAdapter(serviceAdapter);
+        serviceList.setVisibility(View.GONE);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,18 +61,21 @@ public class Services extends AppCompatActivity {
                 service.setVisibility(View.VISIBLE);
                 hourly.setVisibility(View.VISIBLE);
                 enter.setVisibility(View.VISIBLE);
+                serviceList.setVisibility(View.GONE);
                 enter.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         serviceString = service.getText().toString();
                         hourlyString = hourly.getText().toString();
-                        service.setVisibility(View.GONE);
-                        hourly.setVisibility(View.GONE);
-                        enter.setVisibility(View.GONE);
-                        serviceHolder s = new serviceHolder(serviceString, hourlyString);
-                        database.child("Services").setValue(s);
-                        work.add(s);
-
+                        if ((serviceString.length()>=1) && (hourlyString.length()>=1 && hourlyString.matches("[0-9]+"))) {
+                            service.setVisibility(View.GONE);
+                            hourly.setVisibility(View.GONE);
+                            enter.setVisibility(View.GONE);
+                            serviceHolder s = new serviceHolder(serviceString,hourlyString);
+                            database.child("Services").child(serviceString).setValue(s);
+                            work.add(s);
+                            serviceList.setVisibility(View.VISIBLE);
+                        }
                     }
                 });
             }
