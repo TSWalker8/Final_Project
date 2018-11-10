@@ -25,8 +25,6 @@ public class Services extends AppCompatActivity {
     private Button enter;
     private EditText service;
     private EditText hourly;
-    private EditText serviceText;
-    private EditText hourlyText;
     private String hourlyString, serviceString;
     private ArrayList work;
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();

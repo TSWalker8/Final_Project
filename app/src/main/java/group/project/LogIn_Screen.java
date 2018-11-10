@@ -1,6 +1,7 @@
 package group.project;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,15 +12,23 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class LogIn_Screen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Button enter;
-    private String userName, password;
+    private String userName, password, email;
     private EditText usernameInput;
     private EditText passwordInput;
     private String choice="";
     private Button Register;
+    private FirebaseAuth mAuth;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +40,24 @@ public class LogIn_Screen extends AppCompatActivity implements AdapterView.OnIte
         enter = findViewById(R.id.Enter);
         Register= findViewById((R.id.Register));
 
+        mAuth = FirebaseAuth.getInstance();
+
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 userName = usernameInput.getText().toString();
                 password = passwordInput.getText().toString();
-                WelcomeScreen();
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(LogIn_Screen.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    finish();
+                                    WelcomeScreen();
+                                }
+                            }
+                        });
             }
         });
 
