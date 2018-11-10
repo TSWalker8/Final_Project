@@ -37,7 +37,7 @@
         android:layout_marginTop="137dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/serviceOffered" />
+        android:hint="@string/serviceOffered" />
 
 
 
@@ -50,7 +50,7 @@
         android:layout_marginTop="218dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/hourly" />
+        android:hint="@string/hourly" />
 
     <Button
         android:id="@+id/Enter"
