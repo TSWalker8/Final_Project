@@ -35,6 +35,9 @@ public class Welcome_Screen extends AppCompatActivity {
                 if (choice.equals("Admin")) {
                     addServices();
                 }
+                else if (choice.equals("Service Provider")){
+                    serviceProfile();
+                }
 
             }
         });
@@ -45,6 +48,12 @@ public class Welcome_Screen extends AppCompatActivity {
         Intent intent= new Intent(this, Services.class);
         startActivity(intent);
     }
+
+    public void serviceProfile(){
+
+    }
+
+
     /*@Override
     public void onBackPressed() {
         startActivity(new Intent(this, MainActivity.class));

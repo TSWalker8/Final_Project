@@ -21,7 +21,13 @@
         <activity
             android:name=".Services"
             android:label="@string/title_activity_services"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".serviceprofile"
+            android:label="@string/title_activity_serviceprofile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Calendar_Activity" />
+        <activity android:name=".Edit_Profile"></activity>
     </application>
 
 </manifest>

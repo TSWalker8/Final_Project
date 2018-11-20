@@ -22,4 +22,18 @@
     <string name="hourly">What is the Hourly Rate</string>
     <string name="serviceOffered">What Service Would You Like To Offer?</string>
     <string name="Change">Change</string>
+    <string name="title_activity_serviceprofile">serviceprofile</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="Name">Name</string>
+    <string name="Address">Address</string>
+    <string name="Phone_Number">Phone Number</string>
+    <string name="License">License</string>
+    <string name="Description">Description</string>
+    <string name="Company">Company</string>
+    <string name="service_Provider">SERVICE PROVIDER</string>
 </resources>
