@@ -20,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.core.Tag;
 
 public class Register extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -32,6 +31,9 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     private String choice="";
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
+    private User user;
+    private static final String TAG = "EmailPassword";
+    private Toast t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
+        t.makeText(this, "welcome to registration", Toast.LENGTH_SHORT).show();
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,30 +61,46 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                 userName = usernameInput.getText().toString();
                 password = passwordInput.getText().toString();
                 email = emailInput.getText().toString();
-
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    mDatabase = FirebaseDatabase.getInstance();
-                                    User user = new User(password, choice, email);
-                                    mDatabase.getReference("Users")
-                                            .child(mAuth.getCurrentUser().getUid()).setValue(user)
-                                            .addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                                    if (task.isSuccessful()) {
-                                                        finish();
-                                                        WelcomeScreen();
-                                                    }
-                                                }
-                                            });
-                                }
-                            }
-                        });
+                user= new User(password, choice, email);
+                createAccount();
             }
         });
+    }
+
+    public void createAccount(){
+        t.makeText(this, "creating", Toast.LENGTH_SHORT).show();
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+               t.makeText(Register.this, "onComplete", Toast.LENGTH_SHORT).show();
+                boolean b=task.isSuccessful();
+                String s=String.valueOf(b);
+                t.makeText(Register.this, s, Toast.LENGTH_LONG).show();
+                if (task.isSuccessful()) {
+                    t.makeText(Register.this, "SUCCESSFUL", Toast.LENGTH_LONG).show();
+                    mDatabase.getReference("Users").child(mAuth.getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                t.makeText(Register.this, "SUCCESSFUL", Toast.LENGTH_SHORT).show();
+                               // Log.d(TAG, "createUserWithEmail:success");
+                                finish();
+                                WelcomeScreen();
+                            }
+                            if(!task.isSuccessful()){
+                              //  t.makeText(Register.this, "UNSUCCESSFUL", Toast.LENGTH_SHORT).show();
+                               // Log.w(TAG, "CreateUserWithEmail:failure", task.getException());
+                            }
+                        }
+                    });
+                }
+                else{
+                    //t.makeText(Register.this, "UNSUCCESSFUL", Toast.LENGTH_SHORT).show();
+                    Log.w(TAG, "failure", task.getException());
+                }
+            }
+        });
+
     }
 
     public void WelcomeScreen(){
