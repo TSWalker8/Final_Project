@@ -19,33 +19,12 @@
         android:orientation="horizontal" />
 
     <TextView
-        android:id="@+id/Username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="109dp"
-        android:text="@string/Username"
-        tools:text="@string/Username" />
-
-    <EditText
-        android:id="@+id/userInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="137dp"
-        android:ems="10"
-        android:hint="(Please enter a username)"
-        android:inputType="textPersonName" />
-
-    <TextView
         android:id="@+id/Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="190dp"
+        android:layout_marginTop="98dp"
         android:text="@string/Email_Address"
         tools:text="@string/Email_Address" />
 
@@ -53,9 +32,9 @@
         android:id="@+id/emailInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/passwordInput"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="218dp"
+        android:layout_marginTop="144dp"
         android:ems="10"
         android:hint="(Please enter an email)"
         android:inputType="textPersonName" />
@@ -66,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="271dp"
+        android:layout_marginTop="218dp"
         android:text="@string/Password" />
 
     <EditText
@@ -75,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="299dp"
+        android:layout_marginTop="259dp"
         android:ems="10"
         android:hint="(Please enter a password)"
         android:inputType="textPassword" />

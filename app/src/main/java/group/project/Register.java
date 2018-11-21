@@ -61,7 +61,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                 userName = usernameInput.getText().toString();
                 password = passwordInput.getText().toString();
                 email = emailInput.getText().toString();
-                user= new User(password, choice, email);
+                user= new User(password, choice, email, userName);
                 createAccount();
             }
         });
