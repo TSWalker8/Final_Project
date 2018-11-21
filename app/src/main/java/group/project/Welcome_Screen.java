@@ -50,7 +50,8 @@ public class Welcome_Screen extends AppCompatActivity {
     }
 
     public void serviceProfile(){
-
+        Intent intent= new Intent(this, serviceprofile.class);
+        startActivity(intent);
     }
 
 
