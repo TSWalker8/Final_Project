@@ -8,6 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Edit_Profile extends AppCompatActivity {
 
     private EditText name;
@@ -24,6 +29,10 @@ public class Edit_Profile extends AppCompatActivity {
     private Switch license;
     private Boolean switchstate;
     private String state;
+    private DatabaseReference myRef;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private DatabaseReference database;
 
 
     @Override
@@ -37,6 +46,10 @@ public class Edit_Profile extends AppCompatActivity {
         enter=findViewById(R.id.Enter);
         license=findViewById(R.id.License);
         description=findViewById(R.id.Description);
+        mAuth = FirebaseAuth.getInstance();
+        database=FirebaseDatabase.getInstance().getReference();
+        user=mAuth.getCurrentUser();
+
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,15 +71,9 @@ public class Edit_Profile extends AppCompatActivity {
     }
 
     private void serviceProfile(){
-        Bundle b = new Bundle();
-        b.putString("name", namestring);
-        b.putString("address", addressstring);
-        b.putString("number", numberstring);
-        b.putString("company", companystring);
-        b.putString("license", state);
-        b.putString("description", descriptionstring);
+        serviceProviderInfo s = new serviceProviderInfo(namestring, addressstring, numberstring, companystring, state, descriptionstring);
+        myRef.child("Users").child(user.getUid()).child("Info").setValue(s);
         Intent intent = new Intent(this, serviceprofile.class);
-        intent.putExtras(b);
         startActivity(intent);
     }
 }

@@ -36,4 +36,9 @@
     <string name="Description">Description</string>
     <string name="Company">Company</string>
     <string name="service_Provider">SERVICE PROVIDER</string>
+    <string name="date">Date Available</string>
+    <string name="Time">Time Available</string>
+    <string name="title_activity_calendar">Calendar</string>
+    <string name="dateAvailability">Date Available</string>
+    <string name="timeAvailability">What timeslot are you available?</string>
 </resources>

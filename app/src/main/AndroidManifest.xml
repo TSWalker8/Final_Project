@@ -26,8 +26,11 @@
             android:name=".serviceprofile"
             android:label="@string/title_activity_serviceprofile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Calendar_Activity" />
-        <activity android:name=".Edit_Profile"></activity>
+        <activity android:name=".Edit_Profile" />
+        <activity
+            android:name=".Calendar"
+            android:label="@string/title_activity_calendar"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

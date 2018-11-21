@@ -6,7 +6,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,7 +40,7 @@ public class Services extends AppCompatActivity {
         serviceList.setLayoutManager(serviceLayout);
         serviceList.setHasFixedSize(true);
         service= findViewById(R.id.Service);
-        hourly= findViewById(R.id.hourlyRate);
+        hourly= findViewById(R.id.Time);
         enter=findViewById(R.id.Enter);
         service.setVisibility(View.GONE);
         hourly.setVisibility(View.GONE);

@@ -31,6 +31,7 @@ public class Welcome_Screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome__screen);
+        mAuth = FirebaseAuth.getInstance();
         user1= mAuth.getCurrentUser();
         myRef= FirebaseDatabase.getInstance().getReference();
         myRef.child("Users").child(user1.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {

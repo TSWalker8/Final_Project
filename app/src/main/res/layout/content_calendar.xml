@@ -19,26 +19,22 @@
         android:orientation="horizontal" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/serviceAvailable"
+        android:id="@+id/calendarAvailability"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        tools:listitem="@layout/recycler_view_item_1">
-
-    </android.support.v7.widget.RecyclerView>
+        tools:itemCount="50"
+        tools:listitem="@layout/recycler_view_item" />
 
     <EditText
-        android:id="@+id/Service"
+        android:id="@+id/Date"
         android:layout_width="328dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="137dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/serviceOffered" />
-
+        android:hint="@string/dateAvailability"
+        android:inputType="textPersonName" />
 
 
     <EditText
@@ -49,8 +45,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="218dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/hourly" />
+        android:hint="@string/timeAvailability"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/Enter"
