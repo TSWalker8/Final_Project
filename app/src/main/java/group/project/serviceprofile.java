@@ -37,30 +37,50 @@ public class serviceprofile extends AppCompatActivity
     private DatabaseReference myRef;
     private FirebaseUser user;
     private FirebaseAuth mAuth;
+    private Toast t;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_serviceprofile);
         mAuth = FirebaseAuth.getInstance();
         user= mAuth.getCurrentUser();
         myRef= FirebaseDatabase.getInstance().getReference();
+        Toolbar toolbar =  findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                serviceprofile.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView =  findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(serviceprofile.this);
         myRef.child("Users").child(user.getUid()).child("Info").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 serviceProviderInfo s =dataSnapshot.getValue(serviceProviderInfo.class);
-                TextView nameInput=findViewById(R.id.nameInput);
-                nameInput.setText(s.getName());
-                TextView addressInput=findViewById(R.id.addressInput);
-                addressInput.setText(s.getAddress());
-                TextView numberInput=findViewById(R.id.phonenumberInput);
-                numberInput.setText(s.getNumber());
-                TextView companyInput=findViewById(R.id.companyInput);
-                companyInput.setText(s.getCompany());
-                TextView licenseInput=findViewById(R.id.licenseInput);
-                licenseInput.setText(s.getLicense());
-                TextView descriptionInput=findViewById(R.id.Description);
-                descriptionInput.setText(s.getLicense());
+                if(s==null){
+                    t.makeText(serviceprofile.this, "NULL", Toast.LENGTH_LONG).show();
+                    firstSetup();
+                }
+                else{
+                    TextView nameInput=findViewById(R.id.nameInput);
+                    nameInput.setText(s.getName());
+                    TextView addressInput=findViewById(R.id.addressInput);
+                    addressInput.setText(s.getAddress());
+                    TextView numberInput=findViewById(R.id.phonenumberInput);
+                    numberInput.setText(s.getNumber());
+                    TextView companyInput=findViewById(R.id.companyInput);
+                    companyInput.setText(s.getCompany());
+                    TextView licenseInput=findViewById(R.id.licenseInput);
+                    licenseInput.setText(s.getLicense());
+                    TextView descriptionInput=findViewById(R.id.Description);
+                    descriptionInput.setText(s.getDescription());
+                }
             }
 
             @Override
@@ -68,20 +88,6 @@ public class serviceprofile extends AppCompatActivity
 
             }
         });
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_serviceprofile);
-        Toolbar toolbar =  findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView =  findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -123,18 +129,23 @@ public class serviceprofile extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_calendar) {
-            Intent intent= new Intent (this, Calendar.class);
-            startActivity(intent);
+            Intent intent1= new Intent (this, Calendar.class);
+            startActivity(intent1);
         } else if (id == R.id.nav_addservice) {
-
+            t.makeText(serviceprofile.this, "Not Implemented", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_manage) {
-            Intent intent = new Intent(this, Edit_Profile.class);
-            startActivity(intent);
+            Intent intent3 = new Intent(this, Edit_Profile.class);
+            startActivity(intent3);
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void firstSetup(){
+        Intent intent = new Intent(this, Edit_Profile.class);
+        startActivity(intent);
     }
 }

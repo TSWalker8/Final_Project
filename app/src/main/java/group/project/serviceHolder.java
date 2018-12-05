@@ -14,6 +14,10 @@ public class serviceHolder {
         //this.image = image;
     }
 
+    public serviceHolder(){
+
+    }
+
     public String getService() {
         return service;
     }

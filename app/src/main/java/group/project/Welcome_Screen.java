@@ -44,24 +44,23 @@ public class Welcome_Screen extends AppCompatActivity {
                 Role.setText(choice);
                 TextView Username=  findViewById(R.id.Username);
                 Username.setText(user);
-                t.makeText(Welcome_Screen.this, choice, Toast.LENGTH_LONG).show();
+                Continue= findViewById(R.id.Continue);
+                Continue.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick (View v){
+                        if (choice.equals("Admin")) {
+                            addServices();
+                        }
+                        else if (choice.equals("Service Provider")){
+                            serviceProfile();
+                        }
+
+                    }
+                });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        Continue= findViewById(R.id.Continue);
-        Continue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v){
-                if (choice.equals("Admin")) {
-                    addServices();
-                }
-                else if (choice.equals("Service Provider")){
-                    serviceProfile();
-                }
 
             }
         });

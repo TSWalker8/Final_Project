@@ -11,6 +11,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class serviceAdapter extends RecyclerView.Adapter<serviceAdapter.ViewHolder> {
@@ -19,6 +22,8 @@ public class serviceAdapter extends RecyclerView.Adapter<serviceAdapter.ViewHold
     private int position;
     private String kind;
     private String wage;
+    private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+    private serviceHolder s;
 
     public serviceAdapter(ArrayList<serviceHolder> s){
         this.services=s;
@@ -52,7 +57,7 @@ public class serviceAdapter extends RecyclerView.Adapter<serviceAdapter.ViewHold
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         position=i;
 
-        serviceHolder s=services.get(i);
+        s=services.get(i);
         viewHolder.service.setText(s.getService());
         viewHolder.hourly.setText(s.getRate());
 
@@ -70,7 +75,9 @@ public class serviceAdapter extends RecyclerView.Adapter<serviceAdapter.ViewHold
         viewHolder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.print(position);
                 services.remove(position);
+                database.child("Services").child(s.getService()).removeValue();
                 notifyItemRemoved(position);
             }
         });

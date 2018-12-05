@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class LogIn_Screen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class LogIn_Screen extends AppCompatActivity {
 
     private Button enter;
     private String password, email;
@@ -98,18 +98,5 @@ public class LogIn_Screen extends AppCompatActivity implements AdapterView.OnIte
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);
     }
-
-
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        choice = parent.getItemAtPosition(position).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
 
 }

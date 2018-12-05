@@ -32,7 +32,6 @@ public class Edit_Profile extends AppCompatActivity {
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private DatabaseReference database;
 
 
     @Override
@@ -46,9 +45,7 @@ public class Edit_Profile extends AppCompatActivity {
         enter=findViewById(R.id.Enter);
         license=findViewById(R.id.License);
         description=findViewById(R.id.Description);
-        mAuth = FirebaseAuth.getInstance();
-        database=FirebaseDatabase.getInstance().getReference();
-        user=mAuth.getCurrentUser();
+
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,21 +56,27 @@ public class Edit_Profile extends AppCompatActivity {
                 companystring=company.getText().toString();
                 descriptionstring=description.getText().toString();
                 switchstate=license.isChecked();
-                if(switchstate==true){
+                if(switchstate){
                     state="YES";
                 }
                 else{
                     state="NO";
                 }
-                serviceProfile();
+                mAuth = FirebaseAuth.getInstance();
+                myRef= FirebaseDatabase.getInstance().getReference();
+                user=mAuth.getCurrentUser();
+                serviceProviderInfo s = new serviceProviderInfo(namestring, addressstring, numberstring, companystring, state, descriptionstring);
+                myRef.child("Users").child(user.getUid()).child("Info").setValue(s);
+
+                mainPage();
             }
         });
     }
 
-    private void serviceProfile(){
-        serviceProviderInfo s = new serviceProviderInfo(namestring, addressstring, numberstring, companystring, state, descriptionstring);
-        myRef.child("Users").child(user.getUid()).child("Info").setValue(s);
-        Intent intent = new Intent(this, serviceprofile.class);
+    private void mainPage(){
+        Intent intent = new Intent (this,serviceprofile.class);
         startActivity(intent);
+
     }
+
 }

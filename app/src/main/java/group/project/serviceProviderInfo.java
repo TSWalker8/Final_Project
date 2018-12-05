@@ -6,15 +6,19 @@ public class serviceProviderInfo {
     private String number;
     private String company;
     private String license;
-    private String descrption;
+    private String description;
 
-    public serviceProviderInfo(String name, String address, String number, String company, String license, String descrption) {
+    public serviceProviderInfo(String name, String address, String number, String company, String license, String description) {
         this.name = name;
         this.address = address;
         this.number = number;
         this.company = company;
         this.license= license;
-        this.descrption = descrption;
+        this.description = description;
+    }
+
+    public serviceProviderInfo(){
+
     }
 
     public String getName() {
@@ -58,11 +62,11 @@ public class serviceProviderInfo {
         this.company = company;
     }
 
-    public String getDescrption() {
-        return descrption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescrption(String descrption) {
-        this.descrption = descrption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

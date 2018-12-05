@@ -1,6 +1,7 @@
 package group.project;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -45,10 +49,22 @@ public class Services extends AppCompatActivity {
         service.setVisibility(View.GONE);
         hourly.setVisibility(View.GONE);
         enter.setVisibility(View.GONE);
-        work= new ArrayList();
-        serviceAdapter= new serviceAdapter(work);
-        serviceList.setAdapter(serviceAdapter);
         serviceList.setVisibility(View.GONE);
+        database.child("Services").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                work= new ArrayList();
+                serviceAdapter= new serviceAdapter(work);
+                serviceList.setAdapter(serviceAdapter);
+                showData(dataSnapshot);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +93,14 @@ public class Services extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void showData(DataSnapshot dataSnapshot) {
+        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+            serviceHolder h = ds.getValue(serviceHolder.class);
+            work.add(h);
+            serviceList.setVisibility(View.VISIBLE);
+        }
     }
 
 }
