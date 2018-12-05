@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/SERVICE_PROVIDER"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:textSize="25sp"
         android:text="@string/service_Provider"
         android:textStyle="bold|italic" />
@@ -23,7 +23,7 @@
         android:layout_alignStart="@+id/Description"
         android:layout_alignParentTop="true"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="79dp"
+        android:layout_marginTop="50dp"
         android:text="@string/Name" />
 
     <TextView
@@ -33,7 +33,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="79dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="164dp"
         android:layout_marginRight="164dp"
         android:text="TextView" />
@@ -45,7 +45,7 @@
         android:layout_alignStart="@+id/Description"
         android:layout_alignParentTop="true"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="80dp"
         android:text="@string/Address" />
 
     <TextView
@@ -63,7 +63,7 @@
         android:layout_alignStart="@+id/Description"
         android:layout_alignParentTop="true"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="187dp"
+        android:layout_marginTop="110dp"
         android:text="@string/Phone_Number" />
 
     <TextView
@@ -81,7 +81,7 @@
         android:layout_alignStart="@+id/Description"
         android:layout_alignParentTop="true"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="239dp"
+        android:layout_marginTop="140dp"
         android:text="@string/Company" />
 
     <TextView
@@ -98,10 +98,10 @@
         android:id="@+id/License"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/Name"
-        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/Description"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="2dp"
-        android:layout_marginBottom="197dp"
+        android:layout_marginTop="170dp"
         android:text="@string/License" />
 
     <TextView
@@ -116,12 +116,14 @@
     <TextView
         android:id="@+id/Description"
         android:layout_width="356dp"
-        android:layout_height="162dp"
+        android:layout_height="300dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="13dp"
         android:layout_marginLeft="13dp"
-        android:layout_marginTop="336dp"
+        android:layout_marginTop="200dp"
         android:text="TextView" />
+
+
 </RelativeLayout>

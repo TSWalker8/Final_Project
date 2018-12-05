@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -20,8 +21,6 @@ public class serviceAdapter extends RecyclerView.Adapter<serviceAdapter.ViewHold
 
     private ArrayList<serviceHolder> services;
     private int position;
-    private String kind;
-    private String wage;
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     private serviceHolder s;
 
@@ -30,10 +29,9 @@ public class serviceAdapter extends RecyclerView.Adapter<serviceAdapter.ViewHold
     }
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public final View view;
-        public final EditText service;
-        public final EditText hourly;
+        public final TextView service;
+        public final TextView hourly;
         public final ImageButton image;
-        public final Button change;
 
         public ViewHolder(View view){
             super(view);
@@ -41,7 +39,6 @@ public class serviceAdapter extends RecyclerView.Adapter<serviceAdapter.ViewHold
             service=view.findViewById(R.id.serviceText);
             hourly=view.findViewById(R.id.hourlyText);
             image=view.findViewById(R.id.checkImage);
-            change=view.findViewById(R.id.Change);
 
         }
     }
@@ -61,23 +58,12 @@ public class serviceAdapter extends RecyclerView.Adapter<serviceAdapter.ViewHold
         viewHolder.service.setText(s.getService());
         viewHolder.hourly.setText(s.getRate());
 
-        viewHolder.change.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                kind=viewHolder.service.getText().toString();
-                wage=viewHolder.hourly.getText().toString();
-                services.get(position).setService(kind);
-                services.get(position).setRate(wage);
-                notifyItemChanged(position);
-            }
-        });
 
         viewHolder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.print(position);
-                services.remove(position);
-                database.child("Services").child(s.getService()).removeValue();
+                services.remove(viewHolder.getLayoutPosition());
+                database.child("Services").child(viewHolder.service.getText().toString()).removeValue();
                 notifyItemRemoved(position);
             }
         });

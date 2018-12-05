@@ -30,7 +30,12 @@
         <activity
             android:name=".Calendar"
             android:label="@string/title_activity_calendar"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddServicesToProvider"
+            android:label="@string/title_activity_add_services_to_provider"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Services_SPView"></activity>
     </application>
 
 </manifest>

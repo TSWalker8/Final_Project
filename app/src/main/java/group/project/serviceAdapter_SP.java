@@ -19,31 +19,29 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class calendarAdapter extends RecyclerView.Adapter<calendarAdapter.ViewHolder> {
+public class serviceAdapter_SP extends RecyclerView.Adapter<serviceAdapter_SP.ViewHolder> {
 
-    private ArrayList<calendarHolder> dates;
+    private ArrayList<serviceHolder> services;
     private int position;
-    private String date;
-    private String time;
-    private calendarHolder c;
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-    private FirebaseAuth mAuth;
+    private serviceHolder s;
     private FirebaseUser user;
+    private FirebaseAuth mAuth;
 
-    public calendarAdapter(ArrayList<calendarHolder> c){
-        this.dates=c;
+    public serviceAdapter_SP(ArrayList<serviceHolder> s){
+        this.services=s;
     }
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public final View view;
-        public final TextView date;
-        public final TextView time;
+        public final TextView service;
+        public final TextView hourly;
         public final ImageButton image;
 
         public ViewHolder(View view){
             super(view);
             this.view=view;
-            date=view.findViewById(R.id.Date);
-            time=view.findViewById(R.id.Time);
+            service=view.findViewById(R.id.serviceText);
+            hourly=view.findViewById(R.id.hourlyText);
             image=view.findViewById(R.id.checkImage);
 
         }
@@ -51,7 +49,7 @@ public class calendarAdapter extends RecyclerView.Adapter<calendarAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_view_item,viewGroup,false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_view_item_3,viewGroup,false);
 
         return new ViewHolder(v);
     }
@@ -60,33 +58,30 @@ public class calendarAdapter extends RecyclerView.Adapter<calendarAdapter.ViewHo
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         position=i;
 
-        System.out.println(i);
-        c=dates.get(i);
-        System.out.println(c.getDate());
-        System.out.println(c.getDate());
-        viewHolder.date.setText(c.getDate());
-        viewHolder.time.setText(c.getHours());
+        s=services.get(i);
+        viewHolder.service.setText(s.getService());
+        viewHolder.hourly.setText(s.getRate());
+
 
         viewHolder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                c=dates.get(viewHolder.getLayoutPosition());
-                position=viewHolder.getLayoutPosition();
-                dates.remove(position);
+                s=services.get(viewHolder.getLayoutPosition());
                 mAuth = FirebaseAuth.getInstance();
                 user= mAuth.getCurrentUser();
-                database.child("Users").child(user.getUid()).child("Availability").child(c.getDate()+ " "+c.getHours()).removeValue();
-                notifyItemRemoved(position);
+                database.child("Users").child(user.getUid()).child("Services").child(viewHolder.service.getText().toString()).setValue(s);
             }
         });
     }
 
 
 
+
+
     @Override
     public int getItemCount() {
-        if(dates!=null){
-            return dates.size();
+        if(services!=null){
+            return services.size();
         }
         else{
             return 0;

@@ -1,6 +1,8 @@
 package group.project;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +15,11 @@ import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -31,14 +36,17 @@ public class Calendar extends AppCompatActivity {
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     private FirebaseUser u;
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         mAuth = FirebaseAuth.getInstance();
+        user=mAuth.getCurrentUser();
         FloatingActionButton fab = findViewById(R.id.fab);
         calendarList = findViewById(R.id.calendarAvailability);
+        calendarAdapter= new calendarAdapter(availability);
         calendarList.setAdapter(calendarAdapter);
         calendarLayout = new LinearLayoutManager(this);
         calendarList.setLayoutManager(calendarLayout);
@@ -49,10 +57,21 @@ public class Calendar extends AppCompatActivity {
         time.setVisibility(View.GONE);
         date.setVisibility(View.GONE);
         enter.setVisibility(View.GONE);
-        availability= new ArrayList();
-        calendarAdapter= new serviceAdapter(availability);
-        calendarList.setAdapter(calendarAdapter);
-        calendarList.setVisibility(View.GONE);
+
+        database.child("Users").child(user.getUid()).child("Availability").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                availability= new ArrayList();
+                calendarAdapter= new calendarAdapter(availability);
+                calendarList.setAdapter(calendarAdapter);
+                showData(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +92,7 @@ public class Calendar extends AppCompatActivity {
                             time.setVisibility(View.GONE);
                             enter.setVisibility(View.GONE);
                             calendarHolder c = new calendarHolder(dateString,timeString);
-                            u=mAuth.getCurrentUser();
-                            database.child("Users").child(u.getUid()).child("Availability").setValue(c);
+                            database.child("Users").child(user.getUid()).child("Availability").child(dateString+" "+timeString).setValue(c);
                             availability.add(c);
                             calendarList.setVisibility(View.VISIBLE);
                         }
@@ -82,6 +100,15 @@ public class Calendar extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void showData(DataSnapshot dataSnapshot){
+        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+            calendarHolder c = ds.getValue(calendarHolder.class);
+            System.out.println(c.getDate());
+            availability.add(c);
+            calendarList.setVisibility(View.VISIBLE);
+        }
     }
 
 }

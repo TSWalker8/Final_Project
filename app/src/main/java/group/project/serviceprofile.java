@@ -132,7 +132,8 @@ public class serviceprofile extends AppCompatActivity
             Intent intent1= new Intent (this, Calendar.class);
             startActivity(intent1);
         } else if (id == R.id.nav_addservice) {
-            t.makeText(serviceprofile.this, "Not Implemented", Toast.LENGTH_LONG).show();
+            Intent intent2= new Intent (this, AddServicesToProvider.class);
+            startActivity(intent2);
         } else if (id == R.id.nav_manage) {
             Intent intent3 = new Intent(this, Edit_Profile.class);
             startActivity(intent3);

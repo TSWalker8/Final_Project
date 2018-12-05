@@ -5,6 +5,15 @@ public class calendarHolder {
     private String date;
     private String time;
 
+    public calendarHolder(String date, String time){
+        this.date=date;
+        this.time=time;
+
+    }
+
+    public calendarHolder(){
+
+    }
     public String getDate() {
         return date;
     }
@@ -21,9 +30,4 @@ public class calendarHolder {
         this.time = time;
     }
 
-    public calendarHolder(String date, String time){
-        this.date=date;
-        this.time=time;
-
-    }
 }
