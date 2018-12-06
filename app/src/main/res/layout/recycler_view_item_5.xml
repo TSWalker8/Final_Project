@@ -25,6 +25,12 @@
       android:layout_height="wrap_content"
       tools:text="@string/Amount" />
 
+  <TextView
+      android:id="@+id/Availability"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="When Available" />
+
   <Button
       android:id="@+id/Book"
       android:layout_width="match_parent"

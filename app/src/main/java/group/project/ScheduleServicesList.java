@@ -42,21 +42,18 @@ public class ScheduleServicesList extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         serviceList = findViewById(R.id.Services);
         services=new ArrayList();
-        ServiceListAdapter= new ServiceListAdapter(services);
+        ServiceListAdapter= new ServiceListAdapter(services, this);
         serviceList.setAdapter(ServiceListAdapter);
         Layout = new LinearLayoutManager(this);
         serviceList.setLayoutManager(Layout);
         serviceList.setHasFixedSize(true);
-        providerList= findViewById(R.id.ServiceProviders);
-        providers=new ArrayList();
-        ProviderListAdapter= new ProviderListAdapter(providers);
 
 
         database.child("Services").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 services = new ArrayList();
-                ServiceListAdapter = new ServiceListAdapter(services);
+                ServiceListAdapter = new ServiceListAdapter(services, ScheduleServicesList.this);
                 serviceList.setAdapter( ServiceListAdapter);
                 showData(dataSnapshot);
             }
@@ -75,8 +72,4 @@ public class ScheduleServicesList extends AppCompatActivity {
         }
     }
 
-    public void setAdapter(ArrayList<ProviderListHolder> ProviderList){
-        this.providers=ProviderList;
-        ProviderListAdapter= new ProviderListAdapter(ProviderList)
-    }
 }

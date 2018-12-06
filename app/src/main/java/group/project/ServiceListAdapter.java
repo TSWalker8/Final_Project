@@ -30,7 +30,6 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
     private String price;
     private serviceProviderInfo sinfo;
     private serviceHolder h;
-    private ArrayList<ProviderListHolder> providerlist;
     private Context c;
 
     public ServiceListAdapter(ArrayList<String> s, Context context) {
@@ -69,7 +68,9 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
         viewHolder.viewProvider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(c, ScheduleServicesList.class);
+                Intent intent = new Intent(c, ScheduleServiceList_Providers.class);
+                intent.putExtra("service", s);
+                c.startActivity(intent);
 
             }
         });

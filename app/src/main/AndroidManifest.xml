@@ -47,7 +47,7 @@
         <activity android:name=".Edit_profile_HomeOwner" />
         <activity android:name=".Edit_Profile_HomeOwner" />
         <activity android:name=".ScheduleServicesList" />
-        <activity android:name=".ScheduleServiceList_Providers"></activity>
+        <activity android:name=".ScheduleServiceList_Providers" />
     </application>
 
 </manifest>

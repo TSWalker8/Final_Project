@@ -7,7 +7,7 @@
     tools:context=".ScheduleServiceList_Providers">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/Providers"
+        android:id="@+id/providerList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/recycler_view_item_5" />
