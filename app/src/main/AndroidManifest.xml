@@ -35,7 +35,17 @@
             android:name=".AddServicesToProvider"
             android:label="@string/title_activity_add_services_to_provider"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Services_SPView"></activity>
+        <activity android:name=".Services_SPView" />
+        <activity
+            android:name=".homeOwnerProfile"
+            android:label="@string/title_activity_home_owner_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".HomeOwnerCalendar"
+            android:label="@string/title_activity_home_owner_calendar"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Edit_profile_HomeOwner" />
+        <activity android:name=".Edit_Profile_HomeOwner"></activity>
     </application>
 
 </manifest>

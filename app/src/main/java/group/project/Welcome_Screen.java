@@ -54,6 +54,9 @@ public class Welcome_Screen extends AppCompatActivity {
                         else if (choice.equals("Service Provider")){
                             serviceProfile();
                         }
+                        else if (choice.equals("Home Owner")){
+                            homeOwnerProfile();
+                        }
 
                     }
                 });
@@ -74,6 +77,11 @@ public class Welcome_Screen extends AppCompatActivity {
 
     public void serviceProfile(){
         Intent intent= new Intent(this, serviceprofile.class);
+        startActivity(intent);
+    }
+
+    public void homeOwnerProfile(){
+        Intent intent= new Intent (this, homeOwnerProfile.class);
         startActivity(intent);
     }
 

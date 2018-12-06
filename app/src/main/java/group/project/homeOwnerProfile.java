@@ -25,14 +25,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class serviceprofile extends AppCompatActivity
+public class homeOwnerProfile extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String name;
     private String address;
     private String number;
-    private String company;
-    private String license;
     private String description;
     private DatabaseReference myRef;
     private FirebaseUser user;
@@ -44,7 +42,7 @@ public class serviceprofile extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_serviceprofile);
+        setContentView(R.layout.activity_home_owner_profile);
         mAuth = FirebaseAuth.getInstance();
         user= mAuth.getCurrentUser();
         myRef= FirebaseDatabase.getInstance().getReference();
@@ -53,36 +51,32 @@ public class serviceprofile extends AppCompatActivity
 
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                serviceprofile.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                homeOwnerProfile.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView =  findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(serviceprofile.this);
+        navigationView.setNavigationItemSelectedListener(homeOwnerProfile.this);
         myRef.child("Users").child(user.getUid()).child("Info").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                serviceProviderInfo s =dataSnapshot.getValue(serviceProviderInfo.class);
-                if(s==null){
+                HomeOwnerInfo h =dataSnapshot.getValue(HomeOwnerInfo.class);
+                if(h==null){
                     firstSetup();
                 }
                 else{
                     TextView nameInput=findViewById(R.id.nameInput);
-                    nameInput.setText(s.getName());
+                    nameInput.setText(h.getName());
                     TextView addressInput=findViewById(R.id.addressInput);
-                    addressInput.setText(s.getAddress());
+                    addressInput.setText(h.getAddress());
                     TextView numberInput=findViewById(R.id.phonenumberInput);
-                    numberInput.setText(s.getNumber());
-                    TextView companyInput=findViewById(R.id.companyInput);
-                    companyInput.setText(s.getCompany());
-                    TextView licenseInput=findViewById(R.id.licenseInput);
-                    licenseInput.setText(s.getLicense());
+                    numberInput.setText(h.getNumber());
                     TextView descriptionInput=findViewById(R.id.Description);
-                    descriptionInput.setText(s.getDescription());
+                    descriptionInput.setText(h.getDescription());
                     TextView nameheader= findViewById(R.id.nameheader);
-                    nameheader.setText(s.getName());
+                    nameheader.setText(h.getName());
                     TextView numberheader= findViewById(R.id.numberheader);
-                    numberheader.setText(s.getNumber());
+                    numberheader.setText(h.getNumber());
                 }
             }
 
@@ -106,7 +100,7 @@ public class serviceprofile extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.serviceprofile, menu);
+        getMenuInflater().inflate(R.menu.home_owner_profile, menu);
         return true;
     }
 
@@ -132,13 +126,14 @@ public class serviceprofile extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_calendar) {
-            Intent intent1= new Intent (this, Calendar.class);
+            Intent intent1= new Intent (this, HomeOwnerCalendar.class);
             startActivity(intent1);
         } else if (id == R.id.nav_addservice) {
-            Intent intent2= new Intent (this, AddServicesToProvider.class);
-            startActivity(intent2);
+            Toast.makeText(this, "NOT YET IMPLEMENTED", Toast.LENGTH_LONG).show();
+            //Intent intent2= new Intent (this, AddServicesToProvider.class);
+            //startActivity(intent2);
         } else if (id == R.id.nav_manage) {
-            Intent intent3 = new Intent(this, Edit_Profile.class);
+            Intent intent3 = new Intent(this, Edit_Profile_HomeOwner.class);
             startActivity(intent3);
 
         }
@@ -149,7 +144,7 @@ public class serviceprofile extends AppCompatActivity
     }
 
     public void firstSetup(){
-        Intent intent = new Intent(this, Edit_Profile.class);
+        Intent intent = new Intent(this, Edit_Profile_HomeOwner.class);
         startActivity(intent);
     }
 }

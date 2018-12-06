@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".homeOwnerProfile"
+    tools:showIn="@layout/app_bar_home_owner_profile">
+
+    <TextView
+        android:id="@+id/HOME_OWNER"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/HOME_OWNER"
+        android:textSize="25sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/Description"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/Name"
+        android:layout_alignLeft="@+id/Description"
+        android:layout_marginLeft="2dp" />
+
+    <TextView
+        android:id="@+id/nameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginRight="164dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/Address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/Description"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="80dp"
+        android:text="@string/Address"
+        android:layout_alignLeft="@+id/Description"
+        android:layout_marginLeft="2dp" />
+
+    <TextView
+        android:id="@+id/addressInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/nameInput"
+        android:layout_alignTop="@+id/Address"
+        android:text="TextView"
+        android:layout_alignLeft="@+id/nameInput" />
+
+    <TextView
+        android:id="@+id/Phone_Number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/Description"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="110dp"
+        android:text="@string/Phone_Number"
+        android:layout_alignLeft="@+id/Description"
+        android:layout_marginLeft="2dp" />
+
+    <TextView
+        android:id="@+id/phonenumberInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/nameInput"
+        android:layout_alignTop="@+id/Phone_Number"
+        android:text="TextView"
+        android:layout_alignLeft="@+id/nameInput" />
+
+    <TextView
+        android:id="@+id/Description"
+        android:layout_width="356dp"
+        android:layout_height="300dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="200dp"
+        android:text="TextView" />
+
+
+</RelativeLayout>

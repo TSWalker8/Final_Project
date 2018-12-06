@@ -42,4 +42,10 @@
     <string name="dateAvailability">Date Available</string>
     <string name="timeAvailability">What timeslot are you available?</string>
     <string name="title_activity_add_services_to_provider">AddServicesToProvider</string>
+    <string name="title_activity_home_owner_profile">homeOwnerProfile</string>
+    <string name="HOME_OWNER">HOME OWNER</string>
+    <string name="title_activity_home_owner_calendar">HomeOwnerCalendar</string>
+    <string name="date_time">Date and Time Booked</string>
+    <string name="servicedone">Service Being Done</string>
+    <string name="serviceprovider">Service Provider</string>
 </resources>

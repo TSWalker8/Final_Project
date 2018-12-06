@@ -104,11 +104,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     }
 
     public void WelcomeScreen(){
-        Bundle b = new Bundle();
-        b.putString("role", choice);
-        b.putString("user", userName);
         Intent intent = new Intent(this, Welcome_Screen.class);
-        intent.putExtras(b);
         startActivity(intent);
     }
 
