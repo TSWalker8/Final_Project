@@ -30,4 +30,9 @@ public class calendarHolder {
         this.time = time;
     }
 
+    public String toString(){
+
+        return date + " " + time;
+    }
+
 }

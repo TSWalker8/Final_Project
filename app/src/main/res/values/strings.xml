@@ -48,4 +48,7 @@
     <string name="date_time">Date and Time Booked</string>
     <string name="servicedone">Service Being Done</string>
     <string name="serviceprovider">Service Provider</string>
+    <string name="who">Who Provides Service</string>
+    <string name="Rating">Rating</string>
+    <string name="Amount">How Much It Costs</string>
 </resources>

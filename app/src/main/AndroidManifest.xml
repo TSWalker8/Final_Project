@@ -45,7 +45,9 @@
             android:label="@string/title_activity_home_owner_calendar"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Edit_profile_HomeOwner" />
-        <activity android:name=".Edit_Profile_HomeOwner"></activity>
+        <activity android:name=".Edit_Profile_HomeOwner" />
+        <activity android:name=".ScheduleServicesList" />
+        <activity android:name=".ScheduleServiceList_Providers"></activity>
     </application>
 
 </manifest>

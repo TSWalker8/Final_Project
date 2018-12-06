@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:padding="8dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+  <TextView
+      android:id="@+id/ServiceProvider"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      tools:text="@string/who" />
+
+  <TextView
+      android:id="@+id/Rating"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/Rating"
+      tools:text="@string/Rating" />
+
+  <TextView
+      android:id="@+id/Cost"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      tools:text="@string/Amount" />
+
+  <Button
+      android:id="@+id/Book"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Book" />
+</LinearLayout>
