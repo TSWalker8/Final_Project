@@ -70,7 +70,7 @@ public class serviceAdapter_SP extends RecyclerView.Adapter<serviceAdapter_SP.Vi
                 mAuth = FirebaseAuth.getInstance();
                 user= mAuth.getCurrentUser();
                 database.child("Users").child(user.getUid()).child("Services").child(viewHolder.service.getText().toString()).setValue(s);
-                database.child("Services").child("Service Providers").child(s.getService()).setValue(user.getUid());
+                database.child("Services").child(viewHolder.service.getText().toString()).child("Service Providers").setValue(user.getUid());
             }
         });
     }

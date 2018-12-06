@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,7 +33,6 @@ public class ScheduleServiceList_Providers extends AppCompatActivity {
     private String name;
     private String cost;
     private String availability;
-    private String rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,8 @@ public class ScheduleServiceList_Providers extends AppCompatActivity {
         if(getIntent().hasExtra("service")){
             s=getIntent().getStringExtra("service");
         }
+
+        System.out.println(s);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         providerList = findViewById(R.id.providerList);
@@ -50,13 +52,19 @@ public class ScheduleServiceList_Providers extends AppCompatActivity {
         Layout = new LinearLayoutManager(this);
         providerList.setLayoutManager(Layout);
         providerList.setHasFixedSize(true);
-        ProviderListAdapter= new ProviderListAdapter(providers);
 
 
         database.child("Services").child(s).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.toString()==null){
+                    Toast.makeText(ScheduleServiceList_Providers.this, "NO ONE OFFERS THIS SERVICE CURRENTLY", Toast.LENGTH_LONG).show();
+                    Intent intent= new Intent(ScheduleServiceList_Providers.this, ScheduleServicesList.class);
+                    startActivity(intent);
+                }
                 providers = new ArrayList<ProviderListHolder>();
+                ProviderListAdapter = new ProviderListAdapter(providers);
+                providerList.setAdapter(ProviderListAdapter);
                 for (DataSnapshot ds: dataSnapshot.getChildren()){
                     userID=ds.toString();
                     database.child("Users").child(userID).child("info").addValueEventListener(new ValueEventListener() {
@@ -101,6 +109,8 @@ public class ScheduleServiceList_Providers extends AppCompatActivity {
                         }
                     });
                 }
+                ProviderListAdapter = new ProviderListAdapter(providers);
+                providerList.setAdapter(ProviderListAdapter);
             }
 
             @Override
@@ -108,8 +118,6 @@ public class ScheduleServiceList_Providers extends AppCompatActivity {
 
             }
         });
-        ProviderListAdapter = new ProviderListAdapter(providers);
-        providerList.setAdapter(ProviderListAdapter);
 
     }
 }

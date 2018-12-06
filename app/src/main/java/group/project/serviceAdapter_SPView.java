@@ -73,7 +73,7 @@ import java.util.ArrayList;
                     mAuth = FirebaseAuth.getInstance();
                     user= mAuth.getCurrentUser();
                     database.child("Users").child(user.getUid()).child("Services").child(s.getService()).removeValue();
-                    database.child("Services").child("Service Providers").child(s.getService()).child(user.getUid()).removeValue();
+                    database.child("Services").child(s.getService()).child("Service Providers").child(user.getUid()).removeValue();
                     notifyItemRemoved(viewHolder.getLayoutPosition());
                 }
             });
